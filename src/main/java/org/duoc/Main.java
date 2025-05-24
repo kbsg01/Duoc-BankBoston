@@ -8,12 +8,16 @@ public class Main {
         BankBostonApp app = new BankBostonApp();
         int opcion;
 
-        do{
+        do {
             mostrarMenu();
+            while (!sc.hasNextInt()) {
+                System.out.println("Por favor, ingrese una opcion válida.");
+                sc.next(); // descarta la opcion inválida
+            }
             opcion = sc.nextInt();
             sc.nextLine();
 
-            switch (opcion){
+            switch (opcion) {
                 case 1 -> app.registrarCliente(sc);
                 case 2 -> app.verDatosCliente(sc);
                 case 3 -> app.realizarDeposito(sc);
@@ -22,11 +26,11 @@ public class Main {
                 case 6 -> System.out.println("Gracias por usar Bank Boston.");
                 default -> System.out.println("Opción no válida");
             }
-        } while(opcion != 6);
+        } while (opcion != 6);
         sc.close();
     }
 
-    public static void mostrarMenu(){
+    public static void mostrarMenu() {
         String border = "\n==============================";
         System.out.println(border);
         System.out.println("== Bienvenido a Bank Boston ==");

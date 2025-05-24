@@ -2,13 +2,18 @@ package org.duoc;
 
 public class Cuenta {
     //Atributos
+     private static int contadorCuentas = 100000001; // Número de cuenta inicial (se puede cambiar)
     private int numeroCuenta;
     private int saldo = 0;
 
-    //Constructor
-    public Cuenta( int numeroCuenta){
-        this.numeroCuenta = numeroCuenta;
-        this.saldo = saldo;
+
+    /**
+     * Constructor
+     * sin parámetros que genera número de cuenta automáticamente
+     */
+    public Cuenta(){
+        this.numeroCuenta = contadorCuentas++;
+        this.saldo = 0;
     }
 
     //Getters y Setters
@@ -26,7 +31,7 @@ public class Cuenta {
         if(monto > 0){
             saldo += monto;
         } else {
-            System.out.println("El monto debe ser mayor que 0");
+            System.out.println("El monto debe ser mayor que cero.");
         }
     }
 
@@ -35,7 +40,7 @@ public class Cuenta {
             saldo -= monto;
             System.out.println("Giro existoso. Saldo actual: $ "+ saldo);
         } else if( monto > saldo ) {
-            System.out.println("El monto no puede ser superior al saldo disponible en la cuenta. Saldo actual $ "+ saldo);
+            System.out.println("El monto no puede ser superior al saldo disponible en la cuenta.");
         } else {
             System.out.println("El monto debe ser mayor que cero.");
         }

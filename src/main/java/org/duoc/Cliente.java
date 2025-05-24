@@ -1,7 +1,7 @@
 package org.duoc;
 
 public class Cliente {
-    //Atributos
+    // Atributos
     private String rut;
     private String nombre;
     private String apellidoPaterno;
@@ -11,12 +11,11 @@ public class Cliente {
     private String telefono;
     private Cuenta cuentaCorriente;
 
-    //Constructor
+    // Constructor
     public Cliente(String rut, String nombre, String apellidoPaterno, String apellidoMaterno, String domicilio,
-                   String comuna, String telefono, int numeroCuenta){
-        if(rut.length() < 11 || rut.length() > 12){
-            System.out.println("El rut debe tener entre 11 y 12 caracteres");
-            return;
+            String comuna, String telefono) {
+        if (rut.length() < 11 || rut.length() > 12) {
+            throw new IllegalArgumentException("Escriba un rut válido");
         }
         this.rut = rut;
         this.nombre = nombre;
@@ -25,15 +24,15 @@ public class Cliente {
         this.domicilio = domicilio;
         this.comuna = comuna;
         this.telefono = telefono;
-        this.cuentaCorriente = new Cuenta(numeroCuenta);
+        this.cuentaCorriente = new Cuenta(); // Ahora se genera automáticamente
     }
 
-    public String getRut(){
+    public String getRut() {
         return rut;
     }
 
-    public Cuenta getCuenta(){
-        return  cuentaCorriente;
+    public Cuenta getCuenta() {
+        return cuentaCorriente;
     }
 
     public void mostrarDatos() {
@@ -48,7 +47,7 @@ public class Cliente {
         System.out.println("Saldo: $" + cuentaCorriente.getSaldo());
     }
 
-    public void mostrarSaldo(){
-        System.out.println("El saldo de la cuenta es: $"+ cuentaCorriente.getSaldo());
+    public void mostrarSaldo() {
+        System.out.println("El saldo de la cuenta es: $" + cuentaCorriente.getSaldo());
     }
 }

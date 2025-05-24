@@ -12,7 +12,7 @@ public class BankBostonApp {
     }
 
     public void registrarCliente(Scanner sc){
-        System.out.println("Ingrese su RUT");
+        System.out.println("Ingrese su RUT(Con puntos y con guíon)");
         String rut = sc.nextLine();
 
         if(buscarCliente(rut) != null){
@@ -20,7 +20,7 @@ public class BankBostonApp {
             return;
         }
 
-        System.out.println("Ingrese su nombre");
+        System.out.println("Ingrese solo su nombre");
         String nombre = sc.nextLine();
         System.out.println("Ingrese su apellido paterno");
         String apellidoPaterno = sc.nextLine();
@@ -32,14 +32,12 @@ public class BankBostonApp {
         String comuna = sc.nextLine();
         System.out.println("Ingrese su teléfono");
         String telefono = sc.nextLine();
-        System.out.println("Ingrese su número de cuenta");
-        int numeroCuenta = sc.nextInt();
-        sc.nextLine();
 
         try {
-            Cliente newCliente = new Cliente(rut, nombre, apellidoPaterno, apellidoMaterno, domicilio, comuna, telefono, numeroCuenta);
+            Cliente newCliente = new Cliente(rut, nombre, apellidoPaterno, apellidoMaterno, domicilio, comuna, telefono);
             clientes.add(newCliente);
             System.out.println("Cliente registrado con éxito.");
+            System.out.println("Su número de cuenta es: " + newCliente.getCuenta().getNumeroCuenta());
         } catch(IllegalArgumentException e) {
             System.out.println("Error: " + e.getMessage());
         }
@@ -69,7 +67,7 @@ public class BankBostonApp {
             int monto = sc.nextInt();
             sc.nextLine();
             cliente.getCuenta().girar(monto);
-            System.out.println("Giro realizado con éxito.");
+            //System.out.println("Giro realizado con éxito.");
             System.out.println("Su saldo actual es de: $" + cliente.getCuenta().getSaldo());
         }
     }
